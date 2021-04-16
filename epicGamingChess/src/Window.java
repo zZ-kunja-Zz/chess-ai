@@ -16,12 +16,18 @@ public class Window {
     private String title;
     private long glfwWindow;
 
+    private float r, g, b, a;
+
     private static Window window = null;
     
     private Window() {
         this.width = 1920;
         this.height = 1080;
         this.title = "gaming";
+        r = .3f;
+        g = .3f;
+        b = .3f;
+        a = 1f;
     }
     public static Window get() {
         if(Window.window == null) {
@@ -64,6 +70,7 @@ public class Window {
         glfwSetCursorPosCallback(glfwWindow, mouseInput::mousePosCallback);
         glfwSetMouseButtonCallback(glfwWindow, mouseInput::mouseButtonCallback);
         glfwSetScrollCallback(glfwWindow, mouseInput::mouseScrollCallback);
+        glfwSetKeyCallback(glfwWindow, keyInput::keyCallback);
 
         glfwMakeContextCurrent(glfwWindow);
         //vsync
@@ -79,7 +86,7 @@ public class Window {
         while (!glfwWindowShouldClose(glfwWindow)) {
             glfwPollEvents();
 
-            glClearColor(.5f, .5f, .5f, 1.0f);
+            glClearColor(r, g, b, a);
             glClear(GL_COLOR_BUFFER_BIT);
 
             glfwSwapBuffers(glfwWindow);

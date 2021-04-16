@@ -32,9 +32,16 @@ public class keyInput {
             get().keyPressed[key] = true;
 
         } else if(action == GLFW_RELEASE) {
-            get().keyPressed[key]
-
+            get().keyPressed[key] = false;
         }
     }
 
+    public static boolean isKeyPressed(int keyCode) {
+        if(keyCode < get().keyPressed.length) {
+        return get().keyPressed[keyCode];
+        }else{
+            return false;
+        }
+    }
+    
 }
