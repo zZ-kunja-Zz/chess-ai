@@ -83,6 +83,8 @@ public class Window {
     }
 
     public void loop() {
+        float beginTime = deltaTime.getTime();
+        float endTime;
         while (!glfwWindowShouldClose(glfwWindow)) {
             glfwPollEvents();
 
@@ -90,6 +92,10 @@ public class Window {
             glClear(GL_COLOR_BUFFER_BIT);
 
             glfwSwapBuffers(glfwWindow);
+
+            endTime = deltaTime.getTime();
+            float dt = endTime - beginTime;
+            beginTime = endTime;
         }
 
     }
